@@ -31,7 +31,7 @@ public class TaskController {
 
 	@PostMapping(path = "/tasks")
 	public void createTask(@RequestBody Task task) {
-		log.info("<<<<< :::::Task creating !!::::: >>>>>");
+		log.info("<<<<< :::::Creating a task !!::::: >>>>>");
 		service.createTask(task);
 	}
 
