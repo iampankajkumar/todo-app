@@ -2,6 +2,8 @@ package com.pankaj.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,7 @@ public class TaskController {
 	}
 
 	@PostMapping(path = "/tasks")
-	public void createTask(@RequestBody Task task) {
+	public void createTask(@Valid @RequestBody Task task) {
 		log.info("<<<<< :::::Creating a task !!::::: >>>>>");
 		service.createTask(task);
 	}
@@ -42,19 +44,19 @@ public class TaskController {
 	}
 
 	@GetMapping(path = "/tasks/{taskId}")
-	public Task getTaskList(@PathVariable long taskId) {
+	public Task getTaskList(@PathVariable Long taskId) {
 		log.info("<<<<< :::::Getting all task list !!::::: >>>>>");
 		return service.getTask(taskId);
 	}
 
 	@DeleteMapping(path = "/tasks/{taskId}")
-	public void deleteTask(@PathVariable("taskId") long taskId) {
+	public void deleteTask(@PathVariable("taskId") Long taskId) {
 		log.info("<<<<< :::::Deleteing a task !!::::: >>>>>");
 		service.deleteTaskById(taskId);
 	}
 
-	@PutMapping(path = "/tasks/{taskId}")
-	public void markAsDone(@PathVariable("taskId") Long taskId) {
-		service.markAsDone(taskId);
+	@PutMapping(path = "/tasks")
+	public void updateTask(@RequestBody Task task) {
+		service.updateTask(task);
 	}
 }

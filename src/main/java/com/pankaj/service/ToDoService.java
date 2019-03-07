@@ -2,8 +2,11 @@ package com.pankaj.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pankaj.dto.Task;
 
+@Service
 public interface ToDoService {
 
 	public void createTask(Task task);
@@ -16,5 +19,5 @@ public interface ToDoService {
 
 	public void deleteTaskById(Long taskId);
 
-	public Task markAsDone(Long taskId);
+	public Task updateTask(Task task);
 }

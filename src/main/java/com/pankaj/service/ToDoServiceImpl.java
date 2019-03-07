@@ -11,7 +11,6 @@ import com.pankaj.dto.Task;
 import com.pankaj.repository.ToDoRepository;
 
 @Service
-@Transactional
 public class ToDoServiceImpl implements ToDoService {
 
 	private ToDoRepository repository;
@@ -22,8 +21,9 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
+	@Transactional
 	public void createTask(Task task) {
-		task.setTaskStatus(TaskStatus.PENDING.name());
+		task.setTaskStatus(TaskStatus.PENDING);
 		repository.save(task);
 	}
 
@@ -33,25 +33,28 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public Task getTask(Long id) {
-		return repository.findById(id).orElse(null);
+	public Task getTask(Long taskId) {
+		return repository.findOne(taskId);
 	}
 
 	@Override
+	@Transactional
 	public Task update(Task task, Long taskId) {
-		task.setTaskStatus(TaskStatus.PENDING.name());
+		task.setTaskStatus(TaskStatus.PENDING);
 		return repository.save(task);
 	}
 
 	@Override
+	@Transactional
 	public void deleteTaskById(Long taskId) {
-		repository.deleteById(taskId);
+		repository.delete(taskId);
 	}
 
 	@Override
-	public Task markAsDone(Long taskId) {
-		Task tsk = getTask(taskId);
-		tsk.setTaskStatus(TaskStatus.DONE.name());
+	@Transactional
+	public Task updateTask(Task task) {
+		Task tsk = getTask(task.getTaskId());
+		tsk.setTaskStatus(task.getTaskStatus());
 		return repository.save(tsk);
 	}
 
