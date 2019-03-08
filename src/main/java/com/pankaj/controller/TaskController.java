@@ -2,8 +2,6 @@ package com.pankaj.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +35,7 @@ public class TaskController {
 
 	@PostMapping(path = "/tasks")
 	@ApiOperation(value = "This API creates a task")
-	public Response createTask(@Valid @RequestBody Task task) throws ToDoException {
+	public Response createTask(@RequestBody Task task) throws ToDoException {
 		log.info("<<<<< :::::Creating a task !!::::: >>>>>");
 		service.createTask(task);
 		return new Response(ToDoStatus.OK);
@@ -71,7 +69,7 @@ public class TaskController {
 	}
 
 	@PutMapping(path = "/tasks")
-	@ApiOperation(value = "This API update task status")
+	@ApiOperation(value = "This API update a task status")
 	public Response updateTask(@RequestBody Task task) throws ToDoException {
 		service.updateTask(task);
 		return new Response(ToDoStatus.OK);

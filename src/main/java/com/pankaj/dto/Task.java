@@ -15,7 +15,6 @@ import org.hibernate.annotations.Where;
 import com.pankaj.constants.TaskStatus;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,12 +33,10 @@ public class Task {
 	private Long taskId;
 
 	@Column(name = "task_description", nullable = false)
-	@ApiModelProperty(notes = "taskDesc must be provided")
 	private String taskDesc;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "task_status", nullable = false, length = 10)
-	@ApiModelProperty(notes = "taskStatus must be provided")
 	private TaskStatus taskStatus;
 
 }
