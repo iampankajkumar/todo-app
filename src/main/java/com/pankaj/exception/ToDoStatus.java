@@ -5,20 +5,19 @@ public enum ToDoStatus {
 	OK(200, "OK"), GENERAL_EXCEPTION_ERROR(1002, "Some Internal Error !"), NO_TASK_FOUND(404, "No Task Found !!");
 
 	private final int value;
+	private final String message;
 
-	private final String reasonPhrase;
-
-	ToDoStatus(Integer value, String reasonPhrase) {
+	ToDoStatus(Integer value, String message) {
 		this.value = value;
-		this.reasonPhrase = reasonPhrase;
+		this.message = message;
 	}
 
 	public Integer value() {
 		return this.value;
 	}
 
-	public String getReasonPhrase() {
-		return this.reasonPhrase;
+	public String getMessage() {
+		return this.message;
 	}
 
 	@Override

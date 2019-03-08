@@ -21,12 +21,12 @@ public class Response implements Serializable {
 
 	public Response(ToDoStatus error) {
 		this.code = error.value();
-		this.message = error.getReasonPhrase();
+		this.message = error.getMessage();
 	}
 
 	public Response(ToDoStatus error, Object data) {
 		this.code = error.value();
-		this.message = error.getReasonPhrase();
+		this.message = error.getMessage();
 		this.data = data;
 	}
 }
