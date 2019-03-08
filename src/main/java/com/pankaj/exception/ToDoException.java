@@ -6,7 +6,7 @@ public class ToDoException extends Exception {
 	private final ToDoStatus status;
 
 	public ToDoException(ToDoStatus status) {
-		super(status.getReasonPhrase());
+		super(status.getMessage());
 		this.status = status;
 	}
 
