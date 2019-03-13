@@ -1,6 +1,6 @@
 package com.pankaj.exception;
 
-public class ToDoException extends Exception {
+public class ToDoException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	private final ToDoStatus status;

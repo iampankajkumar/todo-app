@@ -1,7 +1,5 @@
 package com.pankaj.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pankaj.dto.Task;
 import com.pankaj.exception.ToDoException;
-import com.pankaj.exception.ToDoStatus;
 import com.pankaj.response.Response;
 import com.pankaj.service.ToDoService;
 
@@ -37,41 +34,33 @@ public class TaskController {
 	@ApiOperation(value = "This API creates a task")
 	public Response createTask(@RequestBody Task task) throws ToDoException {
 		log.info("<<<<< :::::Creating a task !!::::: >>>>>");
-		service.createTask(task);
-		return new Response(ToDoStatus.OK);
+		return service.createTask(task);
 	}
 
 	@GetMapping(path = "/tasks")
 	@ApiOperation(value = "This API gets list of tasks")
 	public Response getTaskList() throws ToDoException {
 		log.info("<<<<< :::::Getting all task list !!::::: >>>>>");
-		List<Task> taskList = service.getTaskList();
-		if (taskList == null || taskList.isEmpty())
-			throw new ToDoException(ToDoStatus.NO_TASK_FOUND);
-		return new Response(ToDoStatus.OK, service.getTaskList());
+		return service.getTaskList();
 	}
 
 	@GetMapping(path = "/tasks/{taskId}")
 	@ApiOperation(value = "This API gets task for particular Id")
 	public Response getTaskList(@PathVariable Long taskId) throws ToDoException {
 		log.info("<<<<< :::::Getting all task list !!::::: >>>>>");
-		if (service.getTask(taskId) == null)
-			throw new ToDoException(ToDoStatus.NO_TASK_FOUND);
-		return new Response(ToDoStatus.OK, service.getTask(taskId));
+		return service.getTask(taskId);
 	}
 
 	@DeleteMapping(path = "/tasks/{taskId}")
 	@ApiOperation(value = "This API delete task for particular Id")
 	public Response deleteTask(@PathVariable("taskId") Long taskId) throws ToDoException {
 		log.info("<<<<< :::::Deleteing a task !!::::: >>>>>");
-		service.deleteTaskById(taskId);
-		return new Response(ToDoStatus.OK);
+		return service.deleteTaskById(taskId);
 	}
 
 	@PutMapping(path = "/tasks")
 	@ApiOperation(value = "This API update a task status")
 	public Response updateTask(@RequestBody Task task) throws ToDoException {
-		service.updateTask(task);
-		return new Response(ToDoStatus.OK);
+		return service.updateTask(task);
 	}
 }

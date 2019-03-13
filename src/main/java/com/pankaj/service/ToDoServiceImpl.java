@@ -8,7 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pankaj.constants.TaskStatus;
 import com.pankaj.dto.Task;
+import com.pankaj.exception.ToDoException;
+import com.pankaj.exception.ToDoStatus;
 import com.pankaj.repository.ToDoRepository;
+import com.pankaj.response.Response;
 
 @Service
 public class ToDoServiceImpl implements ToDoService {
@@ -22,40 +25,47 @@ public class ToDoServiceImpl implements ToDoService {
 
 	@Override
 	@Transactional
-	public Task createTask(Task task) {
+	public Response createTask(Task task) {
 		task.setTaskStatus(TaskStatus.PENDING);
-		return repository.save(task);
+		return new Response(ToDoStatus.OK, repository.save(task));
 	}
 
 	@Override
-	public List<Task> getTaskList() {
-		return (List<Task>) repository.findAll();
+	public Response getTaskList() {
+		List<Task> taskList = (List<Task>) repository.findAll();
+		if (taskList == null || taskList.isEmpty())
+			throw new ToDoException(ToDoStatus.NO_TASK_FOUND);
+		return new Response(ToDoStatus.OK, taskList);
 	}
 
 	@Override
-	public Task getTask(Long taskId) {
-		return repository.findOne(taskId);
+	public Response getTask(Long taskId) {
+		Task task = repository.findOne(taskId);
+		if (task == null)
+			throw new ToDoException(ToDoStatus.NO_TASK_FOUND);
+		return new Response(ToDoStatus.OK, task);
 	}
 
 	@Override
 	@Transactional
-	public Task update(Task task, Long taskId) {
+	public Response update(Task task, Long taskId) {
 		task.setTaskStatus(TaskStatus.PENDING);
-		return repository.save(task);
+		return new Response(ToDoStatus.OK, repository.save(task));
 	}
 
 	@Override
 	@Transactional
-	public void deleteTaskById(Long taskId) {
+	public Response deleteTaskById(Long taskId) {
 		repository.delete(taskId);
+		return new Response(ToDoStatus.OK);
 	}
 
 	@Override
 	@Transactional
-	public Task updateTask(Task task) {
-		Task tsk = getTask(task.getTaskId());
+	public Response updateTask(Task task) {
+		Task tsk = repository.findOne(task.getTaskId());
 		tsk.setTaskStatus(task.getTaskStatus());
-		return repository.save(tsk);
+		return new Response(ToDoStatus.OK, repository.save(tsk));
 	}
 
 }
