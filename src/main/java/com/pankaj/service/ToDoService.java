@@ -10,7 +10,7 @@ import com.pankaj.exception.ToDoException;
 @Service
 public interface ToDoService {
 
-	public void createTask(Task task);
+	public Task createTask(Task task);
 
 	public List<Task> getTaskList() throws ToDoException;
 

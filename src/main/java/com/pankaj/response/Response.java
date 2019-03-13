@@ -2,8 +2,6 @@ package com.pankaj.response;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.pankaj.exception.ToDoStatus;
 
 import lombok.Data;
@@ -11,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@JsonInclude(Include.NON_EMPTY)
 public class Response implements Serializable {
 	private static final long serialVersionUID = 1L;
 

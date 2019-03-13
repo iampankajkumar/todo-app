@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping(value = "/api")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class TaskController {
 
 	private ToDoService service;

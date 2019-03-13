@@ -22,9 +22,9 @@ public class ToDoServiceImpl implements ToDoService {
 
 	@Override
 	@Transactional
-	public void createTask(Task task) {
+	public Task createTask(Task task) {
 		task.setTaskStatus(TaskStatus.PENDING);
-		repository.save(task);
+		return repository.save(task);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.pankaj.swagger;
+package com.pankaj.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

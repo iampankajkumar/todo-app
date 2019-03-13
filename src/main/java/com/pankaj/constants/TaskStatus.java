@@ -6,7 +6,7 @@ public enum TaskStatus {
 
 	private final String statusCode;
 
-	TaskStatus(String statusCode) {
+	private TaskStatus(String statusCode) {
 		this.statusCode = statusCode;
 	}
 
