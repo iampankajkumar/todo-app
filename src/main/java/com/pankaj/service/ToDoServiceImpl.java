@@ -43,6 +43,7 @@ public class ToDoServiceImpl implements ToDoService {
 		Task task = repository.findOne(taskId);
 		if (task == null)
 			throw new ToDoException(ToDoStatus.NO_TASK_FOUND);
+		System.out.println(task);
 		return new Response(ToDoStatus.OK, task);
 	}
 

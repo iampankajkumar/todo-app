@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pankaj.dto.Task;
-import com.pankaj.exception.ToDoException;
 import com.pankaj.response.Response;
 import com.pankaj.service.ToDoService;
 
@@ -32,35 +31,35 @@ public class TaskController {
 
 	@PostMapping(path = "/tasks")
 	@ApiOperation(value = "This API creates a task")
-	public Response createTask(@RequestBody Task task) throws ToDoException {
+	public Response createTask(@RequestBody Task task){
 		log.info("<<<<< :::::Creating a task !!::::: >>>>>");
 		return service.createTask(task);
 	}
 
 	@GetMapping(path = "/tasks")
 	@ApiOperation(value = "This API gets list of tasks")
-	public Response getTaskList() throws ToDoException {
+	public Response getTaskList(){
 		log.info("<<<<< :::::Getting all task list !!::::: >>>>>");
 		return service.getTaskList();
 	}
 
 	@GetMapping(path = "/tasks/{taskId}")
 	@ApiOperation(value = "This API gets task for particular Id")
-	public Response getTaskList(@PathVariable Long taskId) throws ToDoException {
+	public Response getTaskList(@PathVariable Long taskId){
 		log.info("<<<<< :::::Getting all task list !!::::: >>>>>");
 		return service.getTask(taskId);
 	}
 
 	@DeleteMapping(path = "/tasks/{taskId}")
 	@ApiOperation(value = "This API delete task for particular Id")
-	public Response deleteTask(@PathVariable("taskId") Long taskId) throws ToDoException {
+	public Response deleteTask(@PathVariable("taskId") Long taskId){
 		log.info("<<<<< :::::Deleteing a task !!::::: >>>>>");
 		return service.deleteTaskById(taskId);
 	}
 
 	@PutMapping(path = "/tasks")
 	@ApiOperation(value = "This API update a task status")
-	public Response updateTask(@RequestBody Task task) throws ToDoException {
+	public Response updateTask(@RequestBody Task task){
 		return service.updateTask(task);
 	}
 }

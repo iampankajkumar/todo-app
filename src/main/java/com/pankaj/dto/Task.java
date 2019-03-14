@@ -15,6 +15,7 @@ import org.hibernate.annotations.Where;
 import com.pankaj.constants.TaskStatus;
 
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Task")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @SQLDelete(sql = "update Task set task_status='DELETED' WHERE task_id = ?")
 @Where(clause = "task_status <> 'DELETED'")
 @ApiModel(description = "All details about the task. ")
