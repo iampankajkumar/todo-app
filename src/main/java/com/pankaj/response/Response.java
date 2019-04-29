@@ -18,7 +18,7 @@ public class Response implements Serializable {
 		this.code = error.value();
 		this.message = error.getMessage();
 	}
-	
+
 	public Response(ToDoStatus error, Object data) {
 		this.code = error.value();
 		this.message = error.getMessage();

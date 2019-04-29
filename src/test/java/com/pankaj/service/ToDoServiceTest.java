@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.pankaj.constants.TaskStatus;
 import com.pankaj.dto.Task;
@@ -26,7 +26,7 @@ import com.pankaj.response.Response;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class) // enables mockito annotations
 @SpringBootTest
 public class ToDoServiceTest {
 
@@ -38,7 +38,7 @@ public class ToDoServiceTest {
 
 	@Before
 	public void setUp() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.initMocks(this);// enables mockito annotations
 	}
 
 	@Test
@@ -48,7 +48,7 @@ public class ToDoServiceTest {
 		Response response = new Response(ToDoStatus.OK, task);
 		when(repository.findOne(1l)).thenReturn((Task) response.getData());
 		Response actualResp = service.createTask(task);
-		assertEquals(actualResp, response);
+		assertEquals(response, actualResp);
 		verify(repository, times(1)).save(task);
 		log.info("<<<<< ::::: create task [END] ::::: >>>>>");
 	}

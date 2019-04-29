@@ -7,5 +7,5 @@ import com.pankaj.dto.Task;
 
 @Repository
 public interface ToDoRepository extends CrudRepository<Task, Long> {
-	
+
 }

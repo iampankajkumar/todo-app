@@ -2,7 +2,9 @@ package com.pankaj.exception;
 
 public enum ToDoStatus {
 
-	OK(200, "OK"), GENERAL_EXCEPTION_ERROR(1002, "Some Internal Error !"), NO_TASK_FOUND(404, "No Task Found !!");
+	OK(200, "OK"), 
+	GENERAL_EXCEPTION_ERROR(1002, "Some Internal Error !"), 
+	NO_TASK_FOUND(404, "No Task Found !!");
 
 	private final int value;
 	private final String message;
